@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://chs2uls8gw48x"]
+
+[ext_resource type="FontFile" uid="uid://cl5wlbannm8pm" path="res://Kenney Rocket Square.ttf" id="1_ppile"]
+
+[resource]
+default_font = ExtResource("1_ppile")
+default_font_size = 63

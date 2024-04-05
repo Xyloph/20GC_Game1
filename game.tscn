@@ -1,0 +1,127 @@
+[gd_scene load_steps=9 format=3 uid="uid://cf13xyaql76nl"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_cpgq8"]
+[ext_resource type="Script" path="res://Player.gd" id="1_ufjio"]
+[ext_resource type="Script" path="res://Ball.gd" id="3_nrt6d"]
+[ext_resource type="Theme" uid="uid://chs2uls8gw48x" path="res://score_theme.tres" id="4_ceeh8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkrd7"]
+size = Vector2(23, 128)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nw2t0"]
+a = Vector2(1152, 0)
+b = Vector2(0, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_v8v5g"]
+a = Vector2(1152, 648)
+b = Vector2(0, 648)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8xomd"]
+b = Vector2(0, 648)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_cpgq8")
+
+[node name="Other" type="CharacterBody2D" parent="."]
+position = Vector2(129, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other"]
+position = Vector2(11.5, 64)
+shape = SubResource("RectangleShape2D_dkrd7")
+
+[node name="Polygon2D" type="Polygon2D" parent="Other"]
+polygon = PackedVector2Array(0, 0, 23, 0, 23, 128, 0, 128)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(1001, 256)
+script = ExtResource("1_ufjio")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(11.5, 64)
+shape = SubResource("RectangleShape2D_dkrd7")
+
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
+polygon = PackedVector2Array(0, 0, 23, 0, 23, 128, 0, 128)
+
+[node name="Ball" type="RigidBody2D" parent="."]
+script = ExtResource("3_nrt6d")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ball"]
+position = Vector2(24, 18)
+polygon = PackedVector2Array(-24, -18, -24, -2, -8, -2, -8, -18)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ball"]
+position = Vector2(-344, -296)
+polygon = PackedVector2Array(344, 296, 344, 312, 360, 312, 360, 296)
+
+[node name="TopBar" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar"]
+shape = SubResource("SegmentShape2D_nw2t0")
+
+[node name="BottomBar" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBar"]
+shape = SubResource("SegmentShape2D_v8v5g")
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Lines"]
+points = PackedVector2Array(576, 0, 576, 64)
+width = 4.0
+
+[node name="Line2D2" type="Line2D" parent="Lines"]
+position = Vector2(0, 128)
+points = PackedVector2Array(576, 0, 576, 64)
+width = 4.0
+
+[node name="Line2D3" type="Line2D" parent="Lines"]
+position = Vector2(0, 256)
+points = PackedVector2Array(576, 0, 576, 64)
+width = 4.0
+
+[node name="Line2D4" type="Line2D" parent="Lines"]
+position = Vector2(0, 384)
+points = PackedVector2Array(576, 0, 576, 64)
+width = 4.0
+
+[node name="Line2D5" type="Line2D" parent="Lines"]
+position = Vector2(0, 512)
+points = PackedVector2Array(576, 0, 576, 64)
+width = 4.0
+
+[node name="Line2D6" type="Line2D" parent="Lines"]
+position = Vector2(0, 640)
+points = PackedVector2Array(576, 0, 576, 8)
+width = 4.0
+
+[node name="OtherScore" type="Label" parent="."]
+offset_left = 488.0
+offset_top = 9.0
+offset_right = 551.0
+offset_bottom = 88.0
+theme = ExtResource("4_ceeh8")
+text = "0"
+horizontal_alignment = 2
+
+[node name="PlayerScore" type="Label" parent="."]
+offset_left = 605.0
+offset_top = 10.0
+offset_right = 668.0
+offset_bottom = 89.0
+theme = ExtResource("4_ceeh8")
+text = "0"
+
+[node name="GoalPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalPlayer"]
+shape = SubResource("SegmentShape2D_8xomd")
+
+[node name="GoalOther" type="Area2D" parent="."]
+position = Vector2(1152, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalOther"]
+shape = SubResource("SegmentShape2D_8xomd")
+
+[connection signal="body_entered" from="GoalPlayer" to="." method="_on_goal_player_body_entered"]
+[connection signal="body_entered" from="GoalOther" to="." method="_on_goal_other_body_entered"]
