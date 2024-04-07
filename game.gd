@@ -4,8 +4,8 @@ extends Node2D
 @onready var ball: RigidBody2D = $Ball
 @onready var other_shape: CollisionShape2D = $Other/CollisionShape2D
 
-@onready var other_label : Label = $OtherScore
-@onready var player_label : Label = $PlayerScore
+@onready var other_label : Label = $CanvasLayer/HBoxContainer/OtherScore
+@onready var player_label : Label = $CanvasLayer/HBoxContainer/PlayerScore
 
 @onready var hit_audio_player: AudioStreamPlayer = $HitAudioPlayer
 @onready var rebound_audio_player: AudioStreamPlayer = $ReboundAudioPlayer

@@ -98,23 +98,6 @@ position = Vector2(0, 640)
 points = PackedVector2Array(576, 0, 576, 8)
 width = 4.0
 
-[node name="OtherScore" type="Label" parent="."]
-offset_left = 488.0
-offset_top = 9.0
-offset_right = 551.0
-offset_bottom = 88.0
-theme = ExtResource("4_ceeh8")
-text = "0"
-horizontal_alignment = 2
-
-[node name="PlayerScore" type="Label" parent="."]
-offset_left = 605.0
-offset_top = 10.0
-offset_right = 668.0
-offset_bottom = 89.0
-theme = ExtResource("4_ceeh8")
-text = "0"
-
 [node name="GoalPlayer" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalPlayer"]
@@ -136,6 +119,32 @@ stream = ExtResource("6_gibg6")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_vv8hj")]
 visible = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -419.0
+offset_top = 9.0
+offset_right = 427.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_constants/separation = 40
+
+[node name="OtherScore" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_ceeh8")
+text = "0"
+horizontal_alignment = 2
+
+[node name="PlayerScore" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_ceeh8")
+text = "0"
 
 [connection signal="hitSound" from="Ball" to="." method="_on_ball_hit_sound"]
 [connection signal="reboundSound" from="Ball" to="." method="_on_ball_rebound_sound"]
