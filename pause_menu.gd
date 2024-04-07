@@ -2,7 +2,7 @@ extends Control
 class_name PauseMenu
 
 
-
+@export_file var scene_to_load_file_path: String = "res://game.tscn"
 @onready var continue_button: Button = $MarginContainer/PanelContainer/VBoxContainer/ContinueButton
 
 
@@ -29,7 +29,7 @@ func _on_continue_button_pressed() -> void:
 
 func _on_reset_button_pressed() -> void:
 	get_tree().set_pause(false)
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file(scene_to_load_file_path)
 
 
 func _on_quit_button_pressed() -> void:
