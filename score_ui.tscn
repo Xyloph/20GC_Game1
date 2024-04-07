@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ukqmisr4i7b"]
+
+[ext_resource type="Theme" uid="uid://chs2uls8gw48x" path="res://score_theme.tres" id="1_61edw"]
+[ext_resource type="Script" path="res://score_ui.gd" id="1_u3oji"]
+
+[node name="ScoreUI" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -419.0
+offset_top = 9.0
+offset_right = 427.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_constants/separation = 40
+alignment = 1
+script = ExtResource("1_u3oji")
+
+[node name="OtherScore" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_61edw")
+text = "0"
+horizontal_alignment = 2
+
+[node name="PlayerScore" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_61edw")
+text = "0"

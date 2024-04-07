@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://game.gd" id="1_cpgq8"]
 [ext_resource type="Script" path="res://Player.gd" id="1_ufjio"]
 [ext_resource type="Script" path="res://Ball.gd" id="3_nrt6d"]
-[ext_resource type="Theme" uid="uid://chs2uls8gw48x" path="res://score_theme.tres" id="4_ceeh8"]
 [ext_resource type="AudioStream" uid="uid://bwty3c336cove" path="res://sounds/hit.wav" id="5_nrkj6"]
 [ext_resource type="AudioStream" uid="uid://cs4d0homvfndh" path="res://sounds/rebound.wav" id="6_gibg6"]
+[ext_resource type="PackedScene" uid="uid://d3ukqmisr4i7b" path="res://score_ui.tscn" id="7_l5fxk"]
 [ext_resource type="PackedScene" uid="uid://c03mkkbkoy4sh" path="res://pause_menu.tscn" id="7_vv8hj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkrd7"]
@@ -120,31 +120,8 @@ stream = ExtResource("6_gibg6")
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_vv8hj")]
 visible = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -419.0
-offset_top = 9.0
-offset_right = 427.0
-offset_bottom = 88.0
-grow_horizontal = 2
-theme_override_constants/separation = 40
-
-[node name="OtherScore" type="Label" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("4_ceeh8")
-text = "0"
-horizontal_alignment = 2
-
-[node name="PlayerScore" type="Label" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("4_ceeh8")
-text = "0"
+[node name="ScoreUI" parent="CanvasLayer" node_paths=PackedStringArray("game") instance=ExtResource("7_l5fxk")]
+game = NodePath("../..")
 
 [connection signal="hitSound" from="Ball" to="." method="_on_ball_hit_sound"]
 [connection signal="reboundSound" from="Ball" to="." method="_on_ball_rebound_sound"]
