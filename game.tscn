@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://chs2uls8gw48x" path="res://score_theme.tres" id="4_ceeh8"]
 [ext_resource type="AudioStream" uid="uid://bwty3c336cove" path="res://sounds/hit.wav" id="5_nrkj6"]
 [ext_resource type="AudioStream" uid="uid://cs4d0homvfndh" path="res://sounds/rebound.wav" id="6_gibg6"]
-[ext_resource type="PackedScene" uid="uid://c3rgb38ixck3e" path="res://menu.tscn" id="7_vv8hj"]
+[ext_resource type="PackedScene" uid="uid://c03mkkbkoy4sh" path="res://pause_menu.tscn" id="7_vv8hj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkrd7"]
 size = Vector2(23, 128)
@@ -132,15 +132,11 @@ stream = ExtResource("5_nrkj6")
 [node name="ReboundAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_gibg6")
 
-[node name="Menu" parent="." instance=ExtResource("7_vv8hj")]
-visible = false
-offset_left = 346.0
-offset_top = 198.0
-offset_right = 346.0
-offset_bottom = 198.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_vv8hj")]
 
 [connection signal="hitSound" from="Ball" to="." method="_on_ball_hit_sound"]
 [connection signal="reboundSound" from="Ball" to="." method="_on_ball_rebound_sound"]
 [connection signal="body_entered" from="GoalPlayer" to="." method="_on_goal_player_body_entered"]
 [connection signal="body_entered" from="GoalOther" to="." method="_on_goal_other_body_entered"]
-[connection signal="resume" from="Menu" to="." method="_on_menu_resume"]
