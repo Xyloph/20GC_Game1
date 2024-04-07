@@ -7,6 +7,7 @@ class_name PauseMenu
 
 
 func _ready() -> void:
+	assert(FileAccess.file_exists(scene_to_load_file_path), "This file doesn't exist!")
 	self.hide()
 
 
