@@ -1,6 +1,8 @@
 This is a re-creation of pong, one of the first game of https://20_games_challenge.gitlab.io/
 
-Menu/pause key is 'Esc'.
+![image](https://github.com/Xyloph/20GC_Game1/assets/611890/07d2ab93-bcea-4041-b7c4-cec1f6562340)
+
+Menu/pause key is 'Esc'. Move the paddle with W/S or Up/Down arrows.
 
 Play it here: https://xyloph.github.io/20GC_Game1/
 
