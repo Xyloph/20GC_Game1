@@ -46,8 +46,9 @@ shape = SubResource("RectangleShape2D_dkrd7")
 [node name="Polygon2D" type="Polygon2D" parent="Player"]
 polygon = PackedVector2Array(0, 0, 23, 0, 23, 128, 0, 128)
 
-[node name="Ball" type="RigidBody2D" parent="."]
+[node name="Ball" type="RigidBody2D" parent="." node_paths=PackedStringArray("initial_position")]
 script = ExtResource("3_nrt6d")
+initial_position = NodePath("../BallInitialPosition")
 
 [node name="Polygon2D" type="Polygon2D" parent="Ball"]
 position = Vector2(24, 18)
@@ -120,8 +121,10 @@ stream = ExtResource("6_gibg6")
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_vv8hj")]
 visible = false
 
-[node name="ScoreUI" parent="CanvasLayer" node_paths=PackedStringArray("game") instance=ExtResource("7_l5fxk")]
-game = NodePath("../..")
+[node name="ScoreUI" parent="CanvasLayer" instance=ExtResource("7_l5fxk")]
+
+[node name="BallInitialPosition" type="Node2D" parent="."]
+position = Vector2(576, 320)
 
 [connection signal="hitSound" from="Ball" to="." method="_on_ball_hit_sound"]
 [connection signal="reboundSound" from="Ball" to="." method="_on_ball_rebound_sound"]

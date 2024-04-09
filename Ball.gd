@@ -5,6 +5,12 @@ const BODY_MIDDLE = 64 # middle of the paddle which is 128 tall
 signal hitSound(); # have the game play the hit sound
 signal reboundSound(); # have t he game play the rebound sound
 
+# Set to a Node2D which will be used as the starting ball position
+# The engine can move the node according to the stretching settings
+# but we'll always know the correct position to start the ball
+# when the Node2D get moved automatically.
+@export var initial_position: Node2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -29,7 +35,7 @@ func _process(delta: float) -> void:
 
 func start() -> void:
 	ball_speed = 300 # reset the ball speed
-	position = get_viewport_rect().size / 2
+	position = initial_position.position
 	var rand := RandomNumberGenerator.new()
 	# random direction
 	var direction_x = rand.randi_range(-1,1)

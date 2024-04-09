@@ -4,21 +4,15 @@ class_name Game
 @onready var other: CharacterBody2D = $Other
 @onready var ball: RigidBody2D = $Ball
 @onready var other_shape: CollisionShape2D = $Other/CollisionShape2D
-
 @onready var hit_audio_player: AudioStreamPlayer = $HitAudioPlayer
 @onready var rebound_audio_player: AudioStreamPlayer = $ReboundAudioPlayer
-
+@onready var score_ui: ScoreUI = $CanvasLayer/ScoreUI
+@onready var ball_initial_position: Node2D = $BallInitialPosition
 
 var ball_speed := 300
 const OTHER_SPEED = 300
 const OTHER_MIDDLE = 128/2
 const MOVE_LIMIT = 25 # amount of pixels to not move (prevent AI stutters)
-
-var other_score: int = 0
-var player_score: int = 0
-
-signal player_score_changed(value: int)
-signal other_score_changed(value: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,14 +35,12 @@ func _start() -> void:
 
 func _on_goal_player_body_entered(body: Node2D) -> void:
 	if body == ball:
-		player_score += 1
-		player_score_changed.emit(player_score)
+		score_ui.increment(true)
 		ball.start()
 
 func _on_goal_other_body_entered(body: Node2D) -> void:
 	if body == ball:
-		other_score += 1
-		other_score_changed.emit(other_score)
+		score_ui.increment(false)
 		ball.start()
 
 func _on_ball_hit_sound() -> void:

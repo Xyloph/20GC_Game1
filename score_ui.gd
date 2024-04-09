@@ -1,22 +1,16 @@
 extends HBoxContainer
 class_name ScoreUI
 
+@onready var other_score_label: Label = $OtherScore
+@onready var player_score_label: Label = $PlayerScore
 
-@export var game: Game = null
+var player_score : int = 0
+var other_score : int = 0
 
-@onready var other_score: Label = $OtherScore
-@onready var player_score: Label = $PlayerScore
-
-
-func on_game_other_score_changed(value: int) -> void:
-	self.other_score.set_text(str(value))
-
-
-func on_game_player_score_changed(value: int) -> void:
-	self.player_score.set_text(str(value))
-
-
-func _ready() -> void:
-	assert(game != null, "A Game node must be provided in the inspector!")
-	game.other_score_changed.connect(on_game_other_score_changed)
-	game.player_score_changed.connect(on_game_player_score_changed)
+func increment(player:bool) -> void:
+	if player:
+		player_score += 1
+		self.player_score_label.set_text(str(player_score))
+	else:
+		other_score += 1
+		self.other_score_label.set_text(str(other_score))
